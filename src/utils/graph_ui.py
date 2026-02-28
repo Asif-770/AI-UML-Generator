@@ -4,7 +4,7 @@ def render_interactive_graph(classes, relationships):
     nodes = []
     edges = []
     
-    # Restored high-tech node colors
+    # Clean Box Nodes
     for cls in classes:
         nodes.append(Node(
             id=cls, 
@@ -12,32 +12,39 @@ def render_interactive_graph(classes, relationships):
             size=25, 
             shape="box", 
             borderWidth=2,
-            color={"background": "#1F2937", "border": "#00E5FF"}, # Modern dark bg with Cyan border
-            font={"color": "white", "size": 16, "face": "sans-serif"}
+            color={"background": "#1F2937", "border": "#00E5FF"}, 
+            font={"color": "white", "size": 16}
         ))
         
-    # Restored relationship colors
+    # Ultra-Crisp, Readable Edge Text
     for source, rel_type, target in relationships:
-        edge_color = "#00FF00" if rel_type == "Inheritance" else "#00E5FF"
+        edge_color = "#10B981" if rel_type == "Inheritance" else "#3B82F6" if rel_type == "Aggregation" else "#F59E0B"
+        
         edges.append(Edge(
             source=source, 
             target=target, 
             label=rel_type, 
             color=edge_color,
-            width=2,
-            font={"color": "#E5E7EB", "size": 12, "align": "middle", "vadjust": -10}
+            width=2, 
+            font={
+                "color": "#FAF7F7",      # Pure white text
+                "size": 12, 
+                "align": "top",          # MAGIC FIX: Puts the text completely ABOVE the line
+                "strokeWidth": 0,        # Strips out any ugly bold outlines
+                "background": "#1F2937"  # Gives the text a nice dark background pill to pop against
+            }
         ))
         
-    # STABILIZED CONFIGURATION
+    # Graph config with Zoom Enabled
     config = Config(
         width="100%",
-        height=500,
+        height=600,
         directed=True, 
-        physics=False, # Stops bouncy physics
+        physics=False, 
         interaction={
-            "zoomView": False,  # STOPS the graph from zooming out/disappearing on click
-            "dragView": True,   # Allows you to pan the camera safely
-            "dragNodes": True   # Allows you to move boxes around safely
+            "zoomView": True,  
+            "dragView": True,   
+            "dragNodes": True   
         },
         hierarchical={
             "enabled": True, 
