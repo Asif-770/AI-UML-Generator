@@ -1,0 +1,15 @@
+[theme]
+# Modern, professional Blue
+primaryColor = "#3B82F6"
+
+# Clean dark background
+backgroundColor = "#0E1117"
+
+# Soft gray for the sidebar
+secondaryBackgroundColor = "#1F2937"
+
+# Crisp white text
+textColor = "#F9FAFB"
+
+# Modern, readable font
+font = "sans serif"
